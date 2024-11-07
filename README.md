@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# React Item Management App
 
-## Getting Started
+This is a **Nextjs application** designed to manage items, including features to **create**, **update**, and **delete** items. The app utilizes **React Query**, **React Hook Form**, **Tailwind CSS**, and **Zod** for handling API interactions, form validation, and UI components.
 
-First, run the development server:
+## Features
+
+- **Form Handling**: Seamlessly manage form inputs with `React Hook Form` and `Zod` for validation.
+- **API Integration**: Uses **React Query** to manage server state for fetching, creating, updating, and deleting items.
+- **UI Styling**: Styled using **Tailwind CSS**, providing a responsive and modern interface.
+- **Feedback Mechanism**: Displays user-friendly feedback during loading, success, or error states.
+
+## Technologies Used
+
+- **React**: A JavaScript library for building user interfaces.
+- **React Query**: Data-fetching and caching library to manage server state.
+- **React Hook Form**: Library for handling form state and validation.
+- **Zod**: TypeScript-first schema validation library.
+- **Tailwind CSS**: A utility-first CSS framework for styling.
+- **TypeScript**: For static type-checking and improving code quality.
+
+## Project Setup
+
+### 1. Clone the Repository
+
+````bash
+git clone <repo-url>
+cd <project-folder>
+
+### Install Dependencies
+
+To install the required dependencies for the project, run the following command:
+
+```bash
+npm install
+
+### 3. Run the Development Server
+
+After installing the dependencies, start the development server:
+
+Using npm:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The app should now be running at http://localhost:3000 in your browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 4. Set Up Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# .env
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+NEXT_PUBLIC_BASE_URL=https://api.example.com
+````

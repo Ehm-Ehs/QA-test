@@ -22,7 +22,8 @@ const Login = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const { mutate: login } = useLogin();
+  const { mutate: login, status } = useLogin();
+  const isLoading = status === "pending";
 
   const onSubmit = (data: LoginFormInputs) => {
     login(data);
@@ -72,9 +73,19 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full py-2 bg-secondary-100 text-white rounded-lg hover:bg-primary-600 transition duration-200"
+            className={`w-full py-2 bg-secondary-100 text-white rounded-lg hover:bg-secondary-600 transition duration-200 ${
+              isLoading ? "opacity-70 cursor-not-allowed" : ""
+            }`}
+            disabled={isLoading}
           >
-            Login
+            {isLoading ? (
+              <div className="flex items-center justify-center space-x-2">
+                <span className="animate-spin inline-block w-4 h-4 border-2 border-t-transparent border-white rounded-full"></span>
+                <span>Loading...</span>
+              </div>
+            ) : (
+              "Log in"
+            )}
           </button>
         </form>
 

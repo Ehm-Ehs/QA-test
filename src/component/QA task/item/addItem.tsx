@@ -61,6 +61,8 @@ const AddItem = ({ selectedItem, closeModal, refetch }: AddItemProps) => {
   const handleCancelClick = () => {
     closeModal?.();
   };
+  const isLoading =
+    createMutation.status === "pending" || updateMutation.status === "pending";
 
   return (
     <div
@@ -109,9 +111,16 @@ const AddItem = ({ selectedItem, closeModal, refetch }: AddItemProps) => {
           )}
           <button
             type="submit"
-            className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 transition"
+            disabled={isLoading}
+            className={`px-4 py-2 text-white ${
+              isLoading ? "bg-gray-400" : "bg-blue-500"
+            } rounded hover:bg-blue-600 transition`}
           >
-            {selectedItem ? "Update Item" : "Create Item"}
+            {isLoading
+              ? "Processing..."
+              : selectedItem
+              ? "Update Item"
+              : "Create Item"}
           </button>
         </div>
       </form>
