@@ -1,4 +1,4 @@
-import { Item, ItemUpdate, ItemValue } from "@/component/type";
+import { ItemUpdate, ItemValue } from "@/component/type";
 import axiosService from "../axios/axios";
 
 const API_URL = process.env.NEXT_PUBLIC_BASE_URL;

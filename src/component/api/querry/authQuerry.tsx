@@ -1,4 +1,4 @@
-import { UseMutationResult, useMutation } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import Auth_API from "../apis/auth";
 import Auth from "../axios/Auth.Module";
 import { AuthFormValues } from "@/component/type";
@@ -15,7 +15,7 @@ export function useSignup() {
       });
       return response;
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Sign-up successful!", {
         position: "top-center",
         autoClose: 3000,
@@ -46,7 +46,7 @@ export function useLogin() {
       });
       return response;
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Login successful!", {
         position: "top-center",
         autoClose: 3000,

@@ -23,7 +23,7 @@ export function useCreateItem() {
       const response = await Item_API.createItem(data);
       return response;
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Item created successfully!", {
         position: "top-center",
         autoClose: 3000,
@@ -54,7 +54,7 @@ export const useUpdateItem = (id?: string) => {
       const response = await Item_API.updateItems(id, data);
       return response;
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Item updated successfully!", {
         position: "top-center",
         autoClose: 3000,
@@ -80,7 +80,7 @@ export function deleteItem(refetch?: () => void) {
       const response = await Item_API.deleteItems(id);
       return response;
     },
-    onSuccess: (data, variables) => {
+    onSuccess: (variables) => {
       toast.success(`Item with ID ${variables} deleted successfully!`, {
         position: "top-center",
         autoClose: 3000,
