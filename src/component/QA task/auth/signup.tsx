@@ -17,6 +17,7 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
+    trigger,
     formState: { errors },
   } = useForm<SignUpFormInputs>({
     resolver: zodResolver(signupSchema),
@@ -25,22 +26,26 @@ const SignUp = () => {
   const { mutate: signup, status } = useSignup();
   const isLoading = status === "pending";
 
-  const onSubmit = (data: SignUpFormInputs) => {
+  const onSubmit = async (data: SignUpFormInputs) => {
     signup(data);
   };
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-secondary-50">
       <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold mb-6 text-[#00070B]">Sign Up</h2>
 
-        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="space-y-4"
+          noValidate
+          onSubmit={handleSubmit(onSubmit)} // Clean up onSubmit call
+        >
           <div>
             <label htmlFor="username" className="block text-sm text-[#00070B]">
               User Name
             </label>
             <input
               type="text"
+              data-cy="username"
               id="username"
               {...register("username")}
               className={`w-full p-2 border rounded-lg focus:outline-none ${
@@ -49,7 +54,9 @@ const SignUp = () => {
               placeholder="Enter your user name"
             />
             {errors.username && (
-              <p className="text-red-500 text-sm">{errors.username.message}</p>
+              <p data-cy="error-username" className="text-red-500 text-sm">
+                {errors.username.message}
+              </p>
             )}
           </div>
 
@@ -59,6 +66,7 @@ const SignUp = () => {
             </label>
             <input
               type="password"
+              data-cy="password"
               id="password"
               {...register("password")}
               className={`w-full p-2 border rounded-lg focus:outline-none ${
@@ -67,11 +75,14 @@ const SignUp = () => {
               placeholder="Create a password"
             />
             {errors.password && (
-              <p className="text-red-500 text-sm">{errors.password.message}</p>
+              <p data-cy="error-password" className="text-red-500 text-sm">
+                {errors.password.message}
+              </p>
             )}
           </div>
 
           <button
+            data-cy="submit"
             type="submit"
             className={`w-full py-2 bg-secondary-100 text-white rounded-lg hover:bg-secondary-600 transition duration-200 ${
               isLoading ? "opacity-70 cursor-not-allowed" : ""

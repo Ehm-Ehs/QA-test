@@ -42,13 +42,14 @@ const AllItem = () => {
 
   if (isLoading) {
     return (
-      <div className="loading-container">
+      <div data-cy="loading-indicator" className="loading-container">
         <p className="loading-animation">QA Test Loading ...</p>
       </div>
     );
   }
 
-  if (error) return <p>Error fetching items: {error.message}</p>;
+  if (error)
+    return <p data-cy="error-message">Error fetching items: {error.message}</p>;
 
   return (
     <div className="bg-white text-secondary-900 h-screen p-10 relative">
@@ -66,11 +67,14 @@ const AllItem = () => {
         <div className="flex flex-wrap gap-4">
           {items.map((item: Item) => (
             <div
+              data-cy="item"
               key={item.id}
               className="flex flex-col p-4 border rounded shadow hover:shadow-lg transition w-full sm:w-1/2 lg:w-1/3"
             >
-              <h2 className="font-semibold text-lg">{item.name}</h2>
-              <p>{item.description}</p>
+              <h2 data-cy="item-name" className="font-semibold text-lg">
+                {item.name}
+              </h2>
+              <p data-cy="item-description">{item.description}</p>
               <div className="mt-4 flex space-x-2">
                 <button
                   onClick={() => openModal("update", item)}

@@ -55,7 +55,8 @@ const AddItem = ({ selectedItem, closeModal, refetch }: AddItemProps) => {
   }, [selectedItem, reset]);
 
   const handleBackClick = () => {
-    router.back();
+    console.log("triggered");
+    router.push("/QA-task/item/");
   };
 
   const handleCancelClick = () => {
@@ -75,25 +76,34 @@ const AddItem = ({ selectedItem, closeModal, refetch }: AddItemProps) => {
         <div>
           <label className="block mb-1">Name:</label>
           <input
+            data-cy="name"
             type="text"
             {...register("name")}
             className="p-2 border rounded w-full text-secondary-900"
           />
-          {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+          {errors.name && (
+            <p data-cy="name-error" className="text-red-500">
+              {errors.name.message}
+            </p>
+          )}
         </div>
         <div>
           <label className="block mb-1">Description:</label>
           <textarea
+            data-cy="description"
             {...register("description")}
             className="p-2 border rounded w-full text-secondary-900"
           />
           {errors.description && (
-            <p className="text-red-500">{errors.description.message}</p>
+            <p data-cy="description-error" className="text-red-500">
+              {errors.description.message}
+            </p>
           )}
         </div>
         <div className="flex space-x-4">
           {selectedItem ? (
             <button
+              data-cy="cancel-button"
               type="button"
               onClick={handleCancelClick}
               className="px-4 py-2 text-white bg-gray-500 rounded hover:bg-gray-600 transition"
@@ -102,6 +112,7 @@ const AddItem = ({ selectedItem, closeModal, refetch }: AddItemProps) => {
             </button>
           ) : (
             <button
+              data-cy="back-button"
               type="button"
               onClick={handleBackClick}
               className="px-4 py-2 text-white bg-gray-500 rounded hover:bg-gray-600 transition"
@@ -110,6 +121,7 @@ const AddItem = ({ selectedItem, closeModal, refetch }: AddItemProps) => {
             </button>
           )}
           <button
+            data-cy="submit-button"
             type="submit"
             disabled={isLoading}
             className={`px-4 py-2 text-white ${

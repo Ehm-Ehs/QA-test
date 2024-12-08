@@ -41,6 +41,7 @@ const Login = () => {
             </label>
             <input
               type="text"
+              data-cy="username"
               id="username"
               {...register("username")}
               className={`w-full p-2 border rounded-lg focus:outline-none ${
@@ -49,7 +50,9 @@ const Login = () => {
               placeholder="Enter your user name"
             />
             {errors.username && (
-              <p className="text-red-500 text-sm">{errors.username.message}</p>
+              <p data-cy="error-username" className="text-red-500 text-sm">
+                {errors.username.message}
+              </p>
             )}
           </div>
 
@@ -59,6 +62,7 @@ const Login = () => {
             </label>
             <input
               type="password"
+              data-cy="password"
               id="password"
               {...register("password")}
               className={`w-full p-2 border rounded-lg focus:outline-none ${
@@ -67,11 +71,14 @@ const Login = () => {
               placeholder="Enter your password"
             />
             {errors.password && (
-              <p className="text-red-500 text-sm">{errors.password.message}</p>
+              <p data-cy="error-password" className="text-red-500 text-sm">
+                {errors.password.message}
+              </p>
             )}
           </div>
 
           <button
+            data-cy="submit"
             type="submit"
             className={`w-full py-2 bg-secondary-100 text-white rounded-lg hover:bg-secondary-600 transition duration-200 ${
               isLoading ? "opacity-70 cursor-not-allowed" : ""

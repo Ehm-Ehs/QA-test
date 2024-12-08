@@ -27,14 +27,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <TanstackProviders>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          {children}
-        </body>
-      </TanstackProviders>
-      <ToastContainer hideProgressBar />
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <TanstackProviders>{children}</TanstackProviders>
+        <ToastContainer hideProgressBar />
+      </body>
     </html>
   );
 }
