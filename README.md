@@ -49,3 +49,41 @@ The app should now be running at http://localhost:3000 in your browser.
 
 NEXT_PUBLIC_BASE_URL=https://api.example.com
 ````
+
+# Running Cypress Tests Locally
+
+This repository contains Cypress tests that can be run locally to validate the functionality of the application. Below are the steps to set up and run the tests on your local machine.
+
+## Prerequisites
+
+Before running the tests, make sure you have the following installed on your system:
+
+- **Node.js**: You need Node.js to run Cypress tests.
+
+  - You can download it from [here](https://nodejs.org/en/download/).
+
+- **Cypress**: Cypress is the testing framework used for running the tests.
+  - Cypress will be installed via npm when you install the project dependencies.
+  ### 3. Open Cypress Test Runner
+
+Once the dependencies are installed, you can open Cypress using the following command:
+
+```bash
+npx cypress open
+```
+
+This will open the Cypress Test Runner in your browser. From here, you can choose which test to run or run all tests.
+
+### 4. Run Tests from Command Line
+
+Alternatively, you can run the tests from the command line in headless mode (without opening the Cypress GUI). To do this, run:
+
+```bash
+npx cypress run
+```
+
+This will run all the tests and output the results directly to the terminal.
+
+## Test Output
+
+Once the tests have completed, you will see the results in the terminal or Cypress Test Runner. Any failed tests will be highlighted, and you can see detailed logs for troubleshooting.
