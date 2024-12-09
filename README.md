@@ -74,16 +74,6 @@ npx cypress open
 
 This will open the Cypress Test Runner in your browser. From here, you can choose which test to run or run all tests.
 
-### 4. Run Tests from Command Line
-
-Alternatively, you can run the tests from the command line in headless mode (without opening the Cypress GUI). To do this, run:
-
-```bash
-npx cypress run
-```
-
-This will run all the tests and output the results directly to the terminal.
-
 ## Test Output
 
 Once the tests have completed, you will see the results in the terminal or Cypress Test Runner. Any failed tests will be highlighted, and you can see detailed logs for troubleshooting.
