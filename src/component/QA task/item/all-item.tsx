@@ -52,7 +52,10 @@ const AllItem = () => {
     return <p data-cy="error-message">Error fetching items: {error.message}</p>;
 
   return (
-    <div className="bg-white text-secondary-900 h-screen p-10 relative">
+    <div
+      data-cy="item-page-element"
+      className="bg-white text-secondary-900 h-screen p-10 relative"
+    >
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold mb-4">Items</h1>
         <Link
@@ -77,12 +80,14 @@ const AllItem = () => {
               <p data-cy="item-description">{item.description}</p>
               <div className="mt-4 flex space-x-2">
                 <button
+                  data-cy="update"
                   onClick={() => openModal("update", item)}
                   className="inline-block px-2 py-1 text-white bg-green-500 rounded hover:bg-green-600"
                 >
                   Update
                 </button>
                 <button
+                  data-cy="delete"
                   onClick={() => openModal("delete", item)}
                   className="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-600"
                 >

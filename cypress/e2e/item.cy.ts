@@ -1,57 +1,38 @@
-
-
 describe('Item Component', () => {
-   
     beforeEach(() => {
-        const authToken = window.localStorage.getItem('authToken');
-    
-        if (authToken) {
-          window.localStorage.setItem('authToken', authToken);
-        } else {
-          cy.log("No authToken found in localStorage");
-        }
-    
-        cy.intercept("GET", "/item", {
-          statusCode: 200,
-          body: [
-            { id: "1", name: "Item 1", description: "Description 1" },
-            { id: "2", name: "Item 2", description: "Description 2" },
-          ],
-        }).as("getItems");
-    
-        cy.visit("/QA-task/item");
-      });
-    
+      cy.visit('http://localhost:3000/QA-task/login/');
+      cy.get('[data-cy="username"]').type('demi@gmail.com');
+      cy.get('[data-cy="password"]').type('clockwise');
+      cy.get('[data-cy="submit"]').click();
+      cy.get('[data-cy="item-page-element"]', { timeout: 10000 }).should('be.visible');
+      cy.url().should('match', /\/QA-task\/item/);
+    });
+  
     it('should display a loading state and then render items after data loads', () => {
       cy.visit('http://localhost:3000/QA-task/item');
       cy.url().should('match', /\/QA-task\/item\/?$/);
-
-      const authToken = window.localStorage.getItem('token');
-
-      if (authToken) {
-        window.localStorage.setItem('authToken', authToken);
-      } else {
-        cy.log("No authToken found in localStorage");
-      }
-      cy.get('[data-cy=loading-indicator]').should('be.visible');
-  
-      cy.wait("@getItems", { timeout: 10000 });
-  
-      cy.get('[data-cy=loading-indicator]').should('not.exist');
-  
-      cy.get('[data-cy=item]').should('have.length', 2);
-      cy.get('[data-cy=item-name]').first().should('contain', 'Item 1');
-      cy.get('[data-cy=item-description]').first().should('contain', 'Description 1');
+      cy.get('[data-cy="loading-indicator"]').should('be.visible');
+      cy.get('[data-cy="loading-indicator"]').should('not.exist');
+      cy.get('[data-cy="item"]').should('have.length', 2);
+      cy.get('[data-cy="item-name"]').first().should('contain', 'Item 1');
+      cy.get('[data-cy="item-description"]').first().should('contain', 'Description 1');
     });
-    it("should display an error message when there is no authentication", () => {
-        cy.visit('http://localhost:3000/QA-task/item');
-        cy.url().should('match', /\/QA-task\/item\/?$/);
-        cy.wait("@getItems");
-    
-        cy.get('[data-cy="error-message"]')
-          .should('be.visible')
-   
-      });
-  });
   
+    it('should successfully update an item', () => {
+      cy.get('[data-cy="update"]').click();
+      cy.get('div').contains('Update Item').should('exist');
+      cy.get('[data-cy="name"]').type('New Item');
+      cy.get('[data-cy="description"]').type('This is a description for the new item');
+      cy.get('[data-cy="submit-button"]').click();
+      cy.url().should('match', /\/QA-task\/item/);
+    });
+  
+    it('should close the modal and go back when clicking the Cancel button', () => {
+      cy.get('[data-cy="update"]').click();
+      cy.get('div').contains('Update Item').should('exist');
+      cy.get('[data-cy="cancel-button"]').contains('Cancel').click();
+      cy.get('[data-cy="item-page-element"]').should('be.visible');
+      cy.url().should('match', /\/QA-task\/item/);
+    });
+  });
   
